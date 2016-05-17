@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="center">
+                
+                <h:link value="home" outcome="/index" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="account" style="font-size: 1.2em; color: black; "/>
+                
+                <h:panelGroup  layout="block" style="width: 900px; padding-left: 30px; padding-top: 30px">
+                    <h:panelGroup  layout="block" styleClass="acctDivs" >
+                        <h:outputLabel value="Personal Info" styleClass="acctLabel"/>
+                        <h:panelGrid columns="3" id="pinfoTable">
+                            <h:outputLabel value="Email :" style="color: black;font-weight: normal"/>
+                            <h:outputLabel value="#{logonBean.current.email}" style="color: black;"/>
+                            <h:outputLabel value="" style="color: black;"/>
+                            <h:outputLabel value="Password :" style="color: black;font-weight: normal"/>
+                            <h:outputLabel value="********" style="color: black;"/>
+                            <h:link value="update" outcome="changepwd" />
+                            <h:outputLabel value="Phone :" style="color: black;font-weight: normal"/>
+                            <h:outputLabel value="#{logonBean.current.customer.phone}" style="color: black;"/>
+                            <h:link value="update" outcome="changefone" />  
+                        </h:panelGrid>
+                            
+                    
+                    </h:panelGroup>
+                    <h:panelGroup  layout="block" styleClass="acctDivs" style="margin-left: 40px;" >
+                        <h:outputLabel value="Order History" styleClass="acctLabel" />
+                        <h:form style="margin-left: 20px; margin-top: 10px">
+                        <h:dataTable styleClass="orderHistory" value="#{(fn:length(orderBean.orders) gt 3)? orderBean.orders.subList(0,3): orderBean.orders }" var="order"
+                                     columnClasses="dateCol,ordernoCol,statusCol">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Order Date" />    
+                                </f:facet>
+                                <h:commandLink action="#{orderBean.viewDetail(order)}">
+                                    <h:outputText value="#{order.date}" style="color: blue">
+                                        <f:convertDateTime pattern="MMM dd, yyyy " />
+                                    </h:outputText>
+                                </h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Order #" />
+                                </f:facet>
+                                <h:outputText value="#{order.id}"/>
+                               
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Status" />
+                                </f:facet>
+                                <h:outputText value="#{order.status}"/>
+                            </h:column>
+                        
+                        </h:dataTable>
+                        <h:link value="view more" outcome="orderHistory" 
+                                style="color:blue;text-decoration: underline;font-size: small; float: right" />
+                        </h:form>
+                        
+                    </h:panelGroup>
+                    <h:panelGroup  layout="block" styleClass="acctDivs" style="margin-top: 40px;" >
+                        <h:outputLabel value="Address Book" styleClass="acctLabel" />
+                        <ui:fragment rendered="#{! empty logonBean.current.customer.addressIdDft}">
+                            <h:panelGrid columns="1" id="address_dlft" width="250">
+                            <h:outputLabel value="default address" style="color: black; font-size: 0.9em; font-weight: bold"/>  
+                            <h:outputText value="#{logonBean.current.customer.addressIdDft.fname} #{logonBean.current.customer.addressIdDft.lname}"/>
+                           
+                            <h:outputText value="#{logonBean.current.customer.addressIdDft.line1}" />
+       
+                            <h:outputText value="#{logonBean.current.customer.addressIdDft.line2}" 
+                                                    rendered="#{! empty logonBean.current.customer.addressIdDft.line2} " />
+                            <h:outputText value="#{logonBean.current.customer.addressIdDft.city},
+                                                    #{logonBean.current.customer.addressIdDft.state} #{logonBean.current.customer.addressIdDft.zipcode}"/>
+                                            
+                            
+                            </h:panelGrid>
+                       
+                       </ui:fragment>
+                    
+                        <h:link value="manage addresses" outcome="addressManage" style="text-decoration: underline; color: blue; font-size: 0.9em; float: right"/>
+                    </h:panelGroup>
+                    <h:panelGroup  layout="block" styleClass="acctDivs" style="margin-left: 40px; margin-top: 40px;" >
+                        <h:outputLabel value="Wallet" styleClass="acctLabel" />
+                        <ui:fragment rendered="#{! empty logonBean.current.customer.ccIdDft}">
+                            <h:panelGrid columns="2" id="cc_dlft" width="250">
+                                <h:outputLabel value="default card"
+                                             style="color: black; font-size: 0.9em; font-weight: bold"/>
+                                <h:outputText/>
+                                <h:graphicImage library="image" name="visa.png" width="50" 
+                                                rendered="#{logonBean.paymentType(logonBean.current.customer.ccIdDft)==4}"/>
+                                <h:graphicImage library="image" name="master.png" width="50" 
+                                                rendered="#{logonBean.paymentType(logonBean.current.customer.ccIdDft)==5}"/>
+                                <h:graphicImage library="image" name="discover.png" width="50" 
+                                                rendered="#{logonBean.paymentType(logonBean.current.customer.ccIdDft)==6}" />
+                                <h:graphicImage library="image" name="amex.png" width="50" 
+                                                rendered="#{logonBean.paymentType(logonBean.current.customer.ccIdDft)==3}"/>
+                                <h:outputText value="#{logonBean.showCard(logonBean.current.customer.ccIdDft)}"/>
+                                            
+                                <h:outputText/>
+                                <h:outputText value="expiration: #{logonBean.current.customer.ccIdDft.cardExpirDate}"/>
+                                             
+                            
+                            </h:panelGrid>
+                            
+                       
+                        </ui:fragment>
+                        <h:link value="manage cards" outcome="cardManage" style="text-decoration: underline; color: blue; font-size: 0.9em; float: right"/>
+                    </h:panelGroup>
+                    
+                    
+                </h:panelGroup>
+                
+                
+           
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

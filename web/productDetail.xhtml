@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="center">
+                <div class="imagebig">
+                    <h:graphicImage value="resources/image/wine/#{wineBean.wine.id}.jpg" />
+          
+                </div>
+                
+                <div style="display: inline-block; width:450px">
+                
+                    <h:panelGrid columns="1">
+                    <h:outputText value="#{wineBean.wine.name}" style="font-size:1.8em; font-weight: bold; color: #990012;"/>
+                    <h:outputText value="Region : #{wineBean.wine.region}" style="font-size: small; font-weight: bold; color: black;"/>
+                    <h:outputText value="Rating : #{wineBean.wine.rating}" style="font-size: small; font-weight: bold;color: black;"/>
+                    <h:outputText value="Year : #{wineBean.wine.year}" style="font-size: small; font-weight: bold;color: black;"/>
+                    </h:panelGrid>
+                
+                </div>
+                
+                <div style="display:inline-block; float: right; margin-top: 20px; margin-right:10px">
+                    
+                    <h:outputText value="Price: $#{wine.price}" 
+                                          style="font-size: large; font-weight: bold; color: #990012; "/>
+                            
+                    <h:form style="margin-top: 10px">
+                        <div style="display:block;">
+                            <h:outputLabel value="Quantity :" style="font-size: 1em; color: black;"/>
+                                
+                        <h:selectOneMenu value="">
+                            <f:selectItem itemValue="1" />
+                            <f:selectItem itemValue="2" />
+                            <f:selectItem itemValue="3" />
+                            <f:selectItem itemValue="4" />
+                            <f:selectItem itemValue="5" />
+                        </h:selectOneMenu>
+                            
+                        </div>
+                        
+                                
+                        <h:commandButton value="Add to Cart" action="#{registerBean.register()}"
+                                                style="float: left; margin-top: 8px"/>
+                    </h:form>
+                </div>
+                
+                <div style="margin-top: 30px; width: 600px; display: inline-block">
+                    <h:outputLabel value="Description : " style="color: grey; font-size: small"/>
+                    <hr></hr>
+                    <h:outputText value="#{wineBean.wine.description}" style="font-size: small; color: grey; white-space: pre-wrap" />
+                    
+                </div>
+                
+                
+                
+                
+                
+               
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

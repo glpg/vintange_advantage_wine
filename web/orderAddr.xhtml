@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                
+                
+                <h:link value="reivew order" outcome="reviewOrder" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="address" style="font-size: 1.2em; color: black; "/>
+                
+                <h:panelGrid columns="3" columnClasses="addrCells" 
+                             style="width:900px; margin-left:30px; margin-top: 30px">
+                    
+                    
+                    
+                            
+                    
+                    
+                    <c:forEach items="#{shopCartBean.order.customerId.addressCollection}" var = "addr">
+                        
+                        
+                       
+                        <h:panelGroup>
+                            
+                            
+                                
+                                <h:panelGrid columns="1" styleClass="addrblock">
+                                
+                                    <h:outputLabel value="(default addr)" rendered="#{addr.id eq shopCartBean.order.customerId.addressIdDft.id}"/>
+                                    <h:outputText value="#{addr.fname} #{addr.lname}"/>
+                           
+                                    <h:outputText value="#{addr.line1}" />
+       
+                                    <h:outputText value="#{addr.line2}" 
+                                                    rendered="#{not empty addr.line2}" />
+                                    <h:outputText value="#{addr.city},
+                                                    #{addr.state} #{addr.zipcode}"/>
+                                            
+                                </h:panelGrid>
+                            
+                            <h:form>
+                                
+                                <h:commandLink value="edit" action="#{addressBean.editCheckOut(addr)}" 
+                                    style="font-size: 0.9em; color: blue; font-weight: bold; margin-right:5px "/>
+                                    
+                              
+                                <h:outputText value="|" style="font-size: 1.0em; color: black;margin-right:5px "/>
+                                <h:commandLink value="remove " action="#{addressBean.remove(addr)}"
+                                    style="font-size: 0.9em; color: blue; font-weight: bold; margin-right:5px"/>
+                                <h:outputText value="|" rendered="#{not(addr.id eq shopCartBean.order.customerId.addressIdDft.id)}"
+                                              style="font-size: 1.0em; color: black;margin-right:5px "/>
+                                <h:commandLink value="make default"  rendered="#{not(addr.id eq shopCartBean.order.customerId.addressIdDft.id)}"
+                                               action="#{addressBean.makeDefault(addr)}"
+                                               
+                                    style="font-size: 0.9em; color: blue; font-weight: bold; margin-right:5px"/>
+                                
+                                <br></br>
+                                <h:commandButton value="Ship to this address" action="#{shopCartBean.changeShipAddr(addr)}"
+                                                 style="float: left; margin-top: 20px; padding: 3px"
+                                                 rendered="#{not(addr.id eq shopCartBean.order.addressId.id)}"/>
+                                <h:commandButton value="Continue with this address" action="reviewOrder"
+                                                 style="float: left; margin-top: 20px; padding: 3px"
+                                                 rendered="#{addr.id eq shopCartBean.order.addressId.id}"/>
+                            </h:form>
+                        
+                        </h:panelGroup>
+                       
+                        
+                    </c:forEach>
+                    
+                    <h:link value="add new address" outcome="orderNewAddr" style="font-size: medium; color: blue; font-weight:bold"/>
+                </h:panelGrid>
+                      
+          
+                    
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

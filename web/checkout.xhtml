@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                <div style="width:80%; padding-left: 30px; padding-top: 20px">
+                    <div style="font-size: 1.5em; color: black; font-weight: bold; margin-bottom: 20px">
+                        Proceed to Check out
+                    </div>
+                    <h:panelGrid columns="2" id="options">
+                    <h:panelGroup>
+                        <h:outputText value="Returning customer" style="font-size: large" />
+                        <h:form id="signin-form" style="margin-top:20px">
+                            <h:panelGrid columns="2">
+                                <h:outputLabel value="email address" />
+                                <h:outputLabel/>
+                                <h:inputText size="35" value="#{logonBean.email}" id="email" required="true" requiredMessage="You must enter your email address" />
+                                <h:message for="email" class="alertmsg"/>
+                        
+                                <h:outputLabel value="password" />
+                                <h:outputLabel/>
+                                <h:inputSecret size="35" value="#{logonBean.password}" id="password" required="true" requiredMessage="You must enter a password"
+                                                                            validatorMessage="Password must be 8-16 characters">
+                                    <f:validateLength minimum="8" maximum="16" />
+                                </h:inputSecret>
+                                <h:message for="password" class="alertmsg"/>
+                        
+                                <h:commandButton value="Sign In" action="#{logonBean.signinCheckout}">
+                            </h:commandButton>
+                        </h:panelGrid>
+                    </h:form>    
+                   
+                    </h:panelGroup>
+                        
+                    <h:panelGroup>
+                        <h:outputText value="New Customer" style="font-size: large;" />
+                        
+                        <h:form style="margin-top: 30px">
+                            <h:panelGrid columns="1">
+                            <h:outputText value="You can continue check out as guest" style="font-size: small"/>
+                            <h:link value="Continue as Guest >"  
+                                    style="color:#990012; font-size: 0.9em; font-weight: bold" />
+                            <br></br>             
+                            <h:outputText value="or register new account for faster check out" style="font-size: small"/>
+                            <h:link value="Create New Account >"  outcome="createAcct"
+                                    style="color:#990012; font-size: 0.9em; font-weight: bold" />
+                            
+                            </h:panelGrid>
+                        </h:form>    
+                        
+                    </h:panelGroup>
+                    
+                 
+                </h:panelGrid>
+                    
+                
+                </div>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

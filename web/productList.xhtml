@@ -1,0 +1,194 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="center">
+                
+    
+                <nav id="shop">
+                <header>
+                    Shop By:
+                </header>
+                <h:form>
+                    <ul>
+                        <li>
+                            <h:outputLabel value="PRICE"/>
+                        
+                            <ul>
+                                <li><h:commandLink value="$20 and Below (#{wineBean.getCountByPrice(0, 20)})"
+                                                   action="#{wineBean.fetchByPrice(0,20)}"/></li>
+                                <li><h:commandLink value="$20-$40 (#{wineBean.getCountByPrice(20,40)})" 
+                                                   action="#{wineBean.fetchByPrice(20,40)}"/></li>
+                                <li><h:commandLink value="$40-$80 (#{wineBean.getCountByPrice(40, 80)})"
+                                                   action="#{wineBean.fetchByPrice(40,80)}"/></li>
+                                <li><h:commandLink value="$80 and Above (#{wineBean.getCountByPrice(80, 10000)})"
+                                                   action="#{wineBean.fetchByPrice(80,10000)}"/></li>
+                        
+                            </ul>
+                        </li>
+                        <li>
+                            <h:outputLabel value="VARIETAL"/>
+                            <ul>
+                                <li><h:commandLink value="Red Wine (#{wineBean.getCountByVarietal('Red wine')})"
+                                                   action="#{wineBean.fetchByVarietal('Red wine')}"/>
+                                
+                                    <ul>
+                                        <li><h:commandLink value ="Cabernet Sauvignon (#{wineBean.getCountByVarietal('Cabernet Sauvignon')})"
+                                                           action="#{wineBean.fetchByVarietal('Cabernet Sauvignon')}"/></li>
+                                        <li><h:commandLink value ="Bordeaux Blends (#{wineBean.getCountByVarietal('Bordeaux Blends')})"
+                                                           action="#{wineBean.fetchByVarietal('Bordeaux Blends')}"/></li>
+                                        <li><h:commandLink value ="Pinot Noir (#{wineBean.getCountByVarietal('Pinot Noir')})"
+                                                           action="#{wineBean.fetchByVarietal('Pinot Noir')}"/></li>
+                                        <li><h:commandLink value ="Syrah/Shriaz (#{wineBean.getCountByVarietal('Syrah/Shriaz')})"
+                                                           action="#{wineBean.fetchByVarietal('Syrah/Shriaz')}"/></li>
+                                    
+                                    </ul>
+                            
+                                </li>
+                                <li><h:commandLink value="White Wine (#{wineBean.getCountByVarietal('White wine')})"
+                                                   action="#{wineBean.fetchByVarietal('White wine')}"/>
+                               
+                                    <ul>
+                                        <li><h:commandLink value="Chardonnay (#{wineBean.getCountByVarietal('Chardonnay')})"
+                                                           action="#{wineBean.fetchByVarietal('Chardonnay')}"/></li>
+                                        <li><h:commandLink value="Sauvignon Blanc (#{wineBean.getCountByVarietal('Sauvignon Blanc')})"
+                                                           action="#{wineBean.fetchByVarietal('Sauvignon Blanc')}"/></li>
+                                        <li><h:commandLink value="Pinot Gris/Grigio (#{wineBean.getCountByVarietal('Pinot Gris/Grigio')})"
+                                                           action="#{wineBean.fetchByVarietal('Pinot Gris/Grigio')}"/></li>
+                                        <li><h:commandLink value="Albarino (#{wineBean.getCountByVarietal('Albarino')})"
+                                                           action="#{wineBean.fetchByVarietal('Albarino')}"/></li>
+                                  
+                                    </ul>
+                            
+                                </li>
+                            
+                                <li><h:commandLink value="Champagne (#{wineBean.getCountByVarietal('Champagne')})"
+                                                   action="#{wineBean.fetchByVarietal('Champagne')}"/></li>
+                                
+                                <li><h:commandLink value="Sake (#{wineBean.getCountByVarietal('Sake')})"
+                                                   action="#{wineBean.fetchByVarietal('Sake')}"/></li>
+                        </ul>
+                   
+                    </li>
+                        
+                        <li>
+                            <h:outputLabel value="REGION " />
+                            <ul>
+                                <li><h:commandLink value="California (#{wineBean.getCountByRegion('California')})"
+                                                   action="#{wineBean.fetchByRegion('California')}"/></li>
+                                <li><h:commandLink value="France (#{wineBean.getCountByRegion('France')})"
+                                                   action="#{wineBean.fetchByRegion('France')}"/></li>
+                                <li><h:commandLink value="Italy (#{wineBean.getCountByRegion('Italy')})"
+                                                   action="#{wineBean.fetchByRegion('Italy')}"/></li>
+                                <li><h:commandLink value="Japan (#{wineBean.getCountByRegion('Japan')})"
+                                                   action="#{wineBean.fetchByRegion('Japan')}"/></li>
+                            </ul>
+                    
+                        </li>
+                        
+                    </ul>
+                    
+                </h:form>
+          
+                
+            </nav>
+                    
+            
+                
+            
+            <div style="width:760px; float: right; margin-left: 40px">
+                <div align="right">
+                    <h:outputLabel value="Sort By: " style="color: grey; font-size: small;"/>
+                    <h:selectOneMenu value="1">
+                        <f:selectItem itemValue="Price: low to high" />
+                        <f:selectItem itemValue="Price: high to low" />
+                        <f:selectItem itemValue="Rating" />
+                    </h:selectOneMenu>
+                </div>
+                <hr></hr>
+                
+                
+                <h:dataTable id="winelist" value="#{wineBean.displayList}" var="wineitem">
+                    
+                    <h:column>
+                        <div class="image">
+                            <h:graphicImage value="resources/image/wine/#{wineitem.wineId.id}.jpg" />
+                        </div>
+                        
+                    </h:column>
+                    <h:column>
+                        <div class="title">
+                            <h:form>
+                            <h:panelGrid columns="1">
+                                
+                                <h:commandLink value="#{wineitem.wineId.name}" style="font-size: large; font-weight: bold; color: black;" action="#{wineBean.showDetail(wineitem.wineId)}"/>
+                                <h:outputText value="Region : #{wineitem.wineId.region}" style="font-size: small; color: black;"/>
+                                <h:outputText value="Rating : #{wineitem.wineId.rating}" style="font-size: small; color: black;"/>
+                                <h:outputText value="Year : #{wineitem.wineId.year}" style="font-size: small; color: black;"/>
+                            </h:panelGrid>
+                            </h:form>
+                        </div>
+                    </h:column>
+                    <h:column>
+                        <div class="shop">
+                            <h:outputText value="Price: $#{wineitem.wineId.price}" 
+                                          style="font-size: large; font-weight: bold; color: #990012; margin-top: 20px "/>
+                            
+                            <h:form style="margin-top: 10px">
+                                <h:outputLabel value="Quantity :" style="font-size: small; color: black;"/>
+                                
+                                <h:selectOneMenu value="#{wineitem.quantity}">
+            
+                                    <f:selectItem itemValue="1" />
+                                    <f:selectItem itemValue="2" />
+                                    <f:selectItem itemValue="3" />
+                                    <f:selectItem itemValue="4" />
+                                    <f:selectItem itemValue="5" />
+                                </h:selectOneMenu>
+                                
+                                <h:commandButton value="Add to Cart" action="#{shopCartBean.addtoCart(wineitem)}"
+                                                style="float: left; margin-top: 8px">
+                                    <f:ajax execute="@form" render=":mainmenu" />
+                                </h:commandButton>
+                            
+                            </h:form>
+                        </div>
+                       
+                        
+                    </h:column>
+                    
+                </h:dataTable>      
+                
+                <div style="position: absolute; right: 0px; bottom: 0px;">
+                    <h:form id="pagination" rendered="#{wineBean.pagination.count gt 0}">
+                    <h:commandLink value="&lt;&lt;" action="#{wineBean.goFirst()}" 
+                                   disabled="#{wineBean.pagination.visiblePages[0] eq 1}"/>
+                    <h:commandLink value="&lt;" action="#{wineBean.goPrevious()}"
+                                   disabled="#{wineBean.pagination.currentPage eq 1}"/>
+                    <ui:repeat value="#{wineBean.pagination.visiblePages}" var="visiblePage">
+                        <h:commandLink value="#{visiblePage}" action ="#{wineBean.showPage(visiblePage)}"
+                                       disabled="#{visiblePage eq wineBean.pagination.currentPage}"/>
+                    </ui:repeat>
+                    <h:commandLink value="&gt;" action="#{wineBean.goNext()}" 
+                                   disabled="#{wineBean.pagination.currentPage eq wineBean.pagination.totalPages}"/>
+                    <h:commandLink value="&gt;&gt;" action="#{wineBean.goLast()}"
+                                   disabled="#{wineBean.pagination.reachLast()}"/>
+                    </h:form>
+                </div>
+                
+                
+            </div>
+            
+               
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="center">
+                <h:outputLabel value="Create new account" style="font-size: 1.5em; font-weight: bold"/>
+                <h:link value="or sign in >" outcome="signin" style="font-size: 0.9em; font-weight: bold; color: #1E90FF; margin-left: 30px"/>
+                <h:form id="newacct-form">
+                    <h:panelGrid columns="2">
+                 
+                        
+                        <h:outputLabel value="first name"/>
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{registerBean.customer.firstName}" id="fname" required="true" requiredMessage="You must enter your first name" />
+                        <h:message for="fname" class="alertmsg"/>
+                        
+                        <h:outputLabel value="last name" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{registerBean.customer.lastName}" id="lname" required="true" requiredMessage="You must enter your last name" />
+                        <h:message for="lname" class="alertmsg"/>
+                        
+                        <h:outputLabel value="email address" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{registerBean.current.email}" id="email" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="email" class="alertmsg"/>
+                        
+                        <h:outputLabel value="password" />
+                        <h:outputLabel/>
+                        <h:inputSecret size="35" value="#{registerBean.current.password}" id="pwd" required="true" requiredMessage="You must enter a password"
+                                                                            validatorMessage="Password must be 8-16 characters">
+                            <f:validateLength minimum="8" maximum="16" />
+                        <p:watermark for="pwd" value="at least 8 characters"/>
+                        </h:inputSecret>
+                        <h:message for="pwd" class="alertmsg"/>
+                        
+                        <h:outputLabel value="password again" />
+                        <h:outputLabel/>
+                        <h:inputSecret size="35" value="#{registerBean.confirmPwd}" id="pwdrepeat" required="true" requiredMessage="You must re-enter a password"/>
+                            
+                        
+                        <h:message for="pwdrepeat" class="alertmsg"/>
+                        
+                        
+                        <h:commandButton value="Create" action="#{registerBean.register()}">
+                        </h:commandButton>
+                        
+                        
+                        
+                    </h:panelGrid>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

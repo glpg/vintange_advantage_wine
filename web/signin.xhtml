@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="center">
+                <h:outputLabel value="Sign in to your account" style="font-size: 1.5em; font-weight: bold"/>
+                <h:link value="or create an account >" outcome="createAcct" style="font-size: 0.9em; font-weight: bold; color: #1E90FF; margin-left: 30px"/>
+                <h:form id="signin-form">
+                    <h:panelGrid columns="2">
+                        <h:outputLabel value="email address" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{logonBean.email}" id="email" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="email" class="alertmsg"/>
+                        
+                        <h:outputLabel value="password" />
+                        <h:outputLabel/>
+                        <h:inputSecret size="35" value="#{logonBean.password}" id="password" required="true" requiredMessage="You must enter a password"
+                                                                            validatorMessage="Password must be 8-16 characters">
+                            <f:validateLength minimum="8" maximum="16" />
+                        </h:inputSecret>
+                        <h:message for="password" class="alertmsg"/>
+                        
+                        <h:commandButton value="Sign In" action="#{logonBean.Signin}">
+                        </h:commandButton>
+                    </h:panelGrid>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

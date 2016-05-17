@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                
+                
+                <h:link value="reivew order" outcome="reviewOrder" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:link value="address" outcome="orderAddr" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="new address" style="font-size: 1.2em; color: black; "/>
+                
+                <h:form id="newaddr-form">
+                    <h:panelGrid columns="2">
+                 
+                        
+                        <h:outputLabel value="first name"/>
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.fname}" id="fname" required="true" requiredMessage="You must enter your first name" />
+                        <h:message for="fname" class="alertmsg"/>
+                        
+                        <h:outputLabel value="last name" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.lname}" id="lname" required="true" requiredMessage="You must enter your last name" />
+                        <h:message for="lname" class="alertmsg"/>
+                        
+                        <h:outputLabel value="line1" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.line1}" id="line1" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="line1" class="alertmsg"/>
+                        
+                        <h:outputLabel value="line2" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.line2}" id="line2"  />
+                        <h:message for="line2" class="alertmsg"/>
+                        
+                        <h:outputLabel value="city" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.city}" id="city" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="city" class="alertmsg"/>
+                        
+                        <h:outputLabel value="state" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.state}" id="state" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="state" class="alertmsg"/>
+                        
+                        <h:outputLabel value="zipcode" />
+                        <h:outputLabel/>
+                        <h:inputText size="35" value="#{newAddrBean.address.zipcode}" id="zipcode" required="true" requiredMessage="You must enter your email address" />
+                        <h:message for="zipcode" class="alertmsg"/>
+                        
+                       
+                        
+                        <h:commandButton value="Create" action="#{newAddrBean.registerCheckOut()}">
+                        </h:commandButton>
+                        
+                        
+                        
+                    </h:panelGrid>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

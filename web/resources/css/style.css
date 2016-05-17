@@ -1,0 +1,599 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Oct 13, 2015, 1:04:47 PM
+    Author     : Yi
+*/
+
+
+body { 
+  background-color: #fff;
+  color: #222;
+  font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+  font-weight: 300;
+  font-size: 15px;
+ 
+}
+/*define the size of the whole page*/
+
+div.wrapper{
+    width: 1000px;
+    margin: 0 auto;
+    padding: 0;
+    position: relative;
+    display: block;
+    overflow: visible;
+    min-height: 100%
+    
+}
+
+
+/*remove underline for all links*/
+a, u {
+    text-decoration: none;
+    color: black;
+}
+
+.inlineblock{
+    display: inline-block;
+}
+
+
+input[type="text"], input[type="password"]
+{
+    -moz-border-radius:4px; /* Firefox */
+    -webkit-border-radius: 4px; /* Safari, Chrome */
+    -khtml-border-radius: 4px; /* KHTML */
+    border-radius: 4px; /* CSS3 */
+    
+}
+
+.headerwrapper {
+    display: block;   
+    width: 100%;
+    height: 120px;
+}
+
+.center {
+    
+    display: block;
+    width: 100%;
+    
+}     
+
+.footer{
+    margin-top:50px;
+    display: block;
+    width: 100%;
+    float: right;
+    
+}
+
+
+
+#header-search input.searchbox{
+    -moz-border-radius: 5px; 
+    -webkit-border-radius: 5px; 
+     border-radius: 8px;
+     border:1px solid #8e8e8e;
+     margin: 3px;
+     color:#4a4a4a;
+     width: 200px;
+     height:20px;
+     outline:0;
+     float: left;
+
+ }
+
+#header-search input.searchbox:focus {
+    box-shadow: 0 0 0 1pt #990012;
+}
+
+
+
+      
+ nav#shop {
+  border: 2px solid #990012;
+  border-radius: 8px;
+  box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.055);
+  display: inline-block;
+  float: left;
+ 
+}   
+
+nav#shop form ul {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+  
+nav#shop form ul li {
+    list-style-type: none;
+    margin: 0;
+    padding: 6px;
+    text-align: left;  
+    font-size: 1em;
+ 
+}             
+
+nav#shop header {  
+    background-color: #990012;
+    font-weight: bold;
+    color: white;
+    padding: 6px 8px 6px 8px !important;
+    text-align: center;
+}
+
+nav#shop form>ul>li>label{
+    
+    font-size: 1em;
+    font-weight: bold;
+    color:   #990012;
+ 
+} 
+
+nav#shop form>ul>li>ul>li>a {
+    font-size: 0.9em;
+    font-weight: bold;
+    color:  black;
+    
+}
+
+nav#shop form>ul>li>ul>li>ul>li>a {
+    font-size: 0.9em;
+    color: grey;
+    
+}
+
+.highlights {
+    
+    width: 800px; 
+    height:320px; 
+    float:right; 
+    display: inline-block; 
+    position: relative;
+}
+
+
+.highlights li {
+    
+    list-style-type: none;
+   
+} 
+
+.mainpost img{
+    position: absolute;
+    bottom:0;
+    left: 0;
+}
+
+.mainpost span{
+    color: white;
+    font-weight: bold;
+    font-size: 1.5em;
+    position: absolute;
+    top: 50px;
+        
+}
+
+.subpost1 img{
+    position: absolute;
+    top:0;
+    right: 0;
+}
+
+.subpost1 span{
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    position: absolute;
+    top: 50px;
+    right: 10px;
+        
+}
+
+.subpost2 img{
+    position: absolute;
+    bottom:0;
+    right: 0;
+}
+
+.subpost2 span{
+    color: white;
+    font-weight: bold;
+    font-size: 1em;
+    position: absolute;
+    bottom: 50px;
+    right: 10px;
+        
+}
+
+.services {
+    
+    width: 800px; 
+    height:200px; 
+    float:right; 
+    display: inline-block; 
+    position: relative;
+}
+
+.services li {
+    
+    list-style-type: none;
+    display: inline-block;
+    
+    
+    
+} 
+
+
+.container {
+    margin: 20px 0 0 0;
+    width: 800px; 
+    height:300px; 
+    float:right; 
+    display: inline-block; 
+    position: relative;
+    overflow: hidden;
+    
+}
+
+.container li{
+    list-style-type: none;
+    margin: 5px;
+    display: inline-block;
+}
+
+.container li p {
+    text-align: center;
+}
+
+
+
+.footer li{
+    list-style-type: none;
+    margin: 5px;
+}
+.footer a{
+    text-decoration: underline;
+    color: blue;
+    font-size: small;
+    
+}
+
+.footer p{
+    margin-top: 20px;
+    font-size: small;
+    color:grey;
+    float: left;
+    display: inline-block;
+}
+.footermenu {
+    display: inline;
+    float: left;
+}
+.social {
+    display: inline-block;
+    float:right;
+    margin-right: 20px;
+}
+
+.social li{
+    display: inline-block;
+    padding: 0;
+    margin: 2px;
+    float: left;
+    
+}
+
+.navArrows {
+    opacity: 0;
+}
+
+.navArrows:hover {
+    opacity: 1;
+}
+
+.leftArrow {
+    position: absolute;
+    left: 0px;
+    bottom: 30px;
+}
+
+.rightArrow {
+    position: absolute;
+    right: 0px;
+    bottom: 30px;
+}
+
+
+
+table input {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color:#FFFFCC;
+}
+
+input[type="submit"]{
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    padding: 10px 20px 10px 20px;
+    background-color:#990012;
+    float: right;
+}
+
+table label {
+    color: #990012;
+    font-weight: 700;
+    font-size: small;
+}
+
+table{
+    
+    border-collapse:separate;
+    border-spacing:0 5px;
+
+}
+
+.alertmsg {
+    color:red;
+    font-size: small;
+    font-weight: bold;
+}
+
+.ui-menuitem-text{
+    color: white!important;
+    font-weight: bold;
+       
+}
+
+
+.ui-menu, .ui-menu .ui-menu-child {
+  background: #990012 !important;
+  
+}
+
+.ui-state-hover {
+    background: #990012 !important;
+    
+}
+
+.m-menu{
+    margin-left: 35px!important;
+    margin-right: 17px!important;
+    
+}
+
+.sub-menu {
+    font-size: 0.90em;
+}
+
+.ui-menubar .ui-menu-child .ui-menuitem-link {
+    width: 90%;
+ }
+ 
+ .ui-menuitem {
+     width: 90px;
+ }
+ 
+ .acctDivs{
+ 
+     width: 45%; 
+     height: 150px; 
+     display: inline-block;
+ 
+ }
+ 
+ .acctLabel{
+     display: block;
+     font-size: 1.0em;
+     font-weight: bold;
+     padding-left: 10px;
+     padding-top: 5px;
+     padding-bottom: 5px;
+     color: #990012;
+     background-color: lightgrey;
+ }
+ 
+ #pinfoTable {
+     padding-top: 10px;
+     padding-left: 30px;
+     border-spacing: 5px;
+     
+ }
+ 
+ 
+ #pinfoTable a{
+     text-decoration: underline;
+     color: blue;
+     font-size: 0.9em;
+ }
+ 
+ #address_dlft, #cc_dlft{ 
+    width: 250px; 
+    border-spacing: 5px;
+    border-collapse: collapse;
+    margin-left: 40px;
+    margin-top: 10px;
+    text-align: left;
+    
+}
+
+#address_dlft td {
+    font-size: 0.9em;
+    color: black;
+    
+}
+
+#cc_dlft td {
+    font-size: 0.9em;
+    color: black;
+    
+}
+
+.addrblock{
+    border-spacing: 0px;
+    margin-bottom: 5px;
+    margin-top: 3px;
+}
+
+#addressTable{
+    width: 900px; 
+    margin-left: 30px; 
+    margin-top: 50px; 
+    
+}
+
+.addrCells{
+    width: 300px;
+}
+
+#winelist{
+    display: block;
+    width: 720px;
+    height: 150px;
+    padding: 0;
+    margin-top: 20px;
+    
+}
+
+#winelist .image{
+    display: inline-block;
+    width: 80px;
+    height: 120px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle 
+    
+}
+
+.imagebig{
+   
+    width: 250px;
+    height: 350px;
+    float: left;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle 
+    
+}
+
+.imagebig>img{
+    
+    width: auto;
+    height: 100%;
+    
+    
+}
+
+#winelist .image>img{
+    width: auto;
+    height: 100%;
+    
+}
+
+#winelist .title{
+    
+    width: 420px; 
+    margin-left: 30px;
+    margin-right: 50px;
+    
+}
+
+#winelist .shop{
+    width:160px; 
+    float: right;
+    display: inline-block;
+}
+
+#winelist>tbody>tr>td {
+    border-bottom: 1px solid silver;
+    height: 150px;
+
+}
+
+.col1{
+    width: 400px;
+    padding: 5px;
+}
+.col2{width: 100px;}
+.col3{width: 150px; padding: 5px;}
+.col4{width: 100px;padding: 5px;}
+
+#options{
+    margin-left: 50px;
+    
+}
+#options td{
+    width: 400px;
+    vertical-align: top;
+}
+
+.twenty-percent {
+     width: 20%;
+}
+
+.eighty-percent {
+     width: 80%;
+}
+
+.top-alignment {
+     vertical-align: top;
+}
+
+.blackboldmedium{
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    
+}
+
+.blackboldmediumright{
+    color: black;
+    font-weight: bold;
+    font-size: 1em;
+    float: right;
+       
+}
+
+.orderHistory td{
+    font-size: small;
+    text-align: center;
+}
+
+
+
+.dateCol{
+    width: 120px;
+}
+
+.ordernoCol{width: 120px;}
+.statusCol{width: 120px;}
+.itemCol{width: 350px; color: #990012; font-weight: bold; text-align: left;}
+
+#pagination span {
+    color: grey;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px;
+}
+#pagination a{
+    color: blue;
+    
+    font-weight: bold;
+    padding: 5px;
+}
+
+.submitOrder:disabled {
+    
+    background-color: grey;
+}

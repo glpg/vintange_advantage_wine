@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="center">
+                
+                
+                <h:link value="home" outcome="/index" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:link value="account" outcome="accountManage" style="font-size: 1.2em; font-weight: bold; color: blue;margin-right:5px "/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="order history" style="font-size: 1.2em; color: black; "/>
+                
+                
+                        <h:form style="margin-left: 20px; margin-top: 10px">
+                        <h:dataTable styleClass="orderHistory" value="#{orderBean.orders }" var="order"
+                                     columnClasses="dateCol,ordernoCol,itemCol,statusCol">
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Order Date" />    
+                                </f:facet>
+                                <h:commandLink action="#{orderBean.viewDetail(order)}">
+                                    <h:outputText value="#{order.date}" style="color: blue">
+                                        <f:convertDateTime pattern="MMM dd, yyyy " />
+                                    </h:outputText>
+                                </h:commandLink>
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Order #" />
+                                </f:facet>
+                                <h:outputText value="#{order.id}"/>
+                               
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Item" />
+                                </f:facet>
+                                <div>
+                                <h:dataTable id="orderItems" value="#{order.orderLineCollection}" var="orderLine">
+                                    <h:column>
+                                        <h:outputText value="#{orderLine.wineId.name}" style="float: left;"/>
+                                    </h:column>
+                                    
+                                </h:dataTable>
+                                </div>
+                            
+                            </h:column>
+                            
+                            <h:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Status" />
+                                </f:facet>
+                                <h:outputText value="#{order.status}"/>
+                            </h:column>
+                        
+                        </h:dataTable>
+                            </h:form>
+          
+                    
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

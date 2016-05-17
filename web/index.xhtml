@@ -1,0 +1,320 @@
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="/template.xhtml">
+            <ui:define name="center">
+                
+            
+            <nav id="shop">
+                <header>
+                    Shop By:
+                </header>
+                <h:form>
+                    <ul>
+                        <li>
+                            <h:outputLabel value="PRICE"/>
+                        
+                            <ul>
+                                <li><h:commandLink value="$20 and Below (#{wineBean.getCountByPrice(0, 20)})"
+                                                   action="#{wineBean.fetchByPrice(0,20)}"/></li>
+                                <li><h:commandLink value="$20-$40 (#{wineBean.getCountByPrice(20,40)})" 
+                                                   action="#{wineBean.fetchByPrice(20,40)}"/></li>
+                                <li><h:commandLink value="$40-$80 (#{wineBean.getCountByPrice(40, 80)})"
+                                                   action="#{wineBean.fetchByPrice(40,80)}"/></li>
+                                <li><h:commandLink value="$80 and Above (#{wineBean.getCountByPrice(80, 10000)})"
+                                                   action="#{wineBean.fetchByPrice(80,10000)}"/></li>
+                        
+                            </ul>
+                        </li>
+                        <li>
+                            <h:outputLabel value="VARIETAL"/>
+                            <ul>
+                                <li><h:commandLink value="Red Wine (#{wineBean.getCountByVarietal('Red wine')})"
+                                                   action="#{wineBean.fetchByVarietal('Red wine')}"/>
+                                
+                                    <ul>
+                                        <li><h:commandLink value ="Cabernet Sauvignon (#{wineBean.getCountByVarietal('Cabernet Sauvignon')})"
+                                                           action="#{wineBean.fetchByVarietal('Cabernet Sauvignon')}"/></li>
+                                        <li><h:commandLink value ="Bordeaux Blends (#{wineBean.getCountByVarietal('Bordeaux Blends')})"
+                                                           action="#{wineBean.fetchByVarietal('Bordeaux Blends')}"/></li>
+                                        <li><h:commandLink value ="Pinot Noir (#{wineBean.getCountByVarietal('Pinot Noir')})"
+                                                           action="#{wineBean.fetchByVarietal('Pinot Noir')}"/></li>
+                                        <li><h:commandLink value ="Syrah/Shriaz (#{wineBean.getCountByVarietal('Syrah/Shriaz')})"
+                                                           action="#{wineBean.fetchByVarietal('Syrah/Shriaz')}"/></li>
+                                    
+                                    </ul>
+                            
+                                </li>
+                                <li><h:commandLink value="White Wine (#{wineBean.getCountByVarietal('White wine')})"
+                                                   action="#{wineBean.fetchByVarietal('White wine')}"/>
+                               
+                                    <ul>
+                                        <li><h:commandLink value="Chardonnay (#{wineBean.getCountByVarietal('Chardonnay')})"
+                                                           action="#{wineBean.fetchByVarietal('Chardonnay')}"/></li>
+                                        <li><h:commandLink value="Sauvignon Blanc (#{wineBean.getCountByVarietal('Sauvignon Blanc')})"
+                                                           action="#{wineBean.fetchByVarietal('Sauvignon Blanc')}"/></li>
+                                        <li><h:commandLink value="Pinot Gris/Grigio (#{wineBean.getCountByVarietal('Pinot Gris/Grigio')})"
+                                                           action="#{wineBean.fetchByVarietal('Pinot Gris/Grigio')}"/></li>
+                                        <li><h:commandLink value="Albarino (#{wineBean.getCountByVarietal('Albarino')})"
+                                                           action="#{wineBean.fetchByVarietal('Albarino')}"/></li>
+                                  
+                                    </ul>
+                            
+                                </li>
+                            
+                                <li><h:commandLink value="Champagne (#{wineBean.getCountByVarietal('Champagne')})"
+                                                   action="#{wineBean.fetchByVarietal('Champagne')}"/></li>
+                                
+                                <li><h:commandLink value="Sake (#{wineBean.getCountByVarietal('Sake')})"
+                                                   action="#{wineBean.fetchByVarietal('Sake')}"/></li>
+                        </ul>
+                   
+                    </li>
+                        
+                        <li>
+                            <h:outputLabel value="REGION " />
+                            <ul>
+                                <li><h:commandLink value="California (#{wineBean.getCountByRegion('California')})"
+                                                   action="#{wineBean.fetchByRegion('California')}"/></li>
+                                <li><h:commandLink value="France (#{wineBean.getCountByRegion('France')})"
+                                                   action="#{wineBean.fetchByRegion('France')}"/></li>
+                                <li><h:commandLink value="Italy (#{wineBean.getCountByRegion('Italy')})"
+                                                   action="#{wineBean.fetchByRegion('Italy')}"/></li>
+                                <li><h:commandLink value="Japan (#{wineBean.getCountByRegion('Japan')})"
+                                                   action="#{wineBean.fetchByRegion('Japan')}"/></li>
+                            </ul>
+                    
+                        </li>
+                        
+                    </ul>
+                    
+                </h:form>
+          
+                
+            </nav>
+            
+            <div class="highlights">
+                <ul>
+                    <li class="mainpost">
+                        <a href="#">
+                            <h:graphicImage library="image" name="mainpostbg.jpg"  width="480" height="320"/>      
+                         
+                        </a>
+                        <span>
+                            Mainpost News
+                        </span>
+                 
+                    </li>
+                    <li class="subpost1">
+                        <a href="#">
+                            <h:graphicImage library="image" name="mainpostbg.jpg"  width="310" height="155"/>   
+                            
+                        </a>
+                        <span>
+                            Subpost News
+                        </span>
+                        
+                    </li>
+                    <li class="subpost2">
+                        <a href="#">
+                            <h:graphicImage library="image" name="mainpostbg.jpg"  width="310" height="155"/>   
+                        </a>
+                        <span>
+                            Subpost News
+                        </span>
+                    </li>
+                    
+                    
+                    
+                </ul>
+                
+               
+            </div>
+                
+            <div class="services" style="margin-top: 20px">
+                <ul style="padding-left: 10px; padding-right:10px">
+                    <li class="s1" style="margin-right:40px">
+                        <a href="#">
+                            <h:graphicImage library="image" name="service.jpg"  width="230" height="180"/>   
+                        </a>
+                        
+                 
+                    </li>
+                    <li class="s2" style="margin-right:40px">
+                        <a href="#">
+                            <h:graphicImage library="image" name="service.jpg"  width="230" height="180"/>
+                        </a>
+                    
+                    </li>
+                    <li class="s3">
+                        <a href="#">
+                            <h:graphicImage library="image" name="service.jpg"  width="230" height="180"/>
+                        </a>
+                        
+                    </li>
+                    
+                    
+                    
+                </ul>
+                
+               
+            </div>
+            
+            <div class="recommendations">
+              
+                    
+                    
+               
+                <div class="container">
+                    <h2>Featured Products</h2>
+                    <div class="items">
+                        <ul>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine1</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine2</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine3</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine4</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine5</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine6</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine7</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine8</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine9</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine10</p>
+                            </li>
+                            <li class="leftArrow" onclick="javascript:moveLeft(this)">
+                                <img src="resources/image/left.png" width="100" alt="arrowL" class="navArrows"></img>
+                            </li>
+                            <li class="rightArrow" onclick="javascript:moveRight(this)">
+                                <img src="resources/image/right.png" width="100"  alt="arrowR"  class="navArrows"></img>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+                <div class="container">
+                    <h2>New Arrivals</h2>
+                    <div class="items">
+                        <ul>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine1</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine2</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine3</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine4</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine5</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine6</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine7</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine8</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine9</p>
+                            </li>
+                            <li class="item"><a href="#">
+                                    <img src="resources/image/wines.jpg" width="130" alt="item"></img>
+                                </a>
+                                <p>Wine10</p>
+                            </li>
+                            <li class="leftArrow" onclick="javascript:moveLeft(this)">
+                                <img src="resources/image/left.png" width="100" alt="arrowL" class="navArrows"></img>
+                            </li>
+                            <li class="rightArrow" onclick="javascript:moveRight(this)">
+                                <img src="resources/image/right.png" width="100"  alt="arrowR"  class="navArrows"></img>
+                            </li>
+                            
+                            
+                        </ul>
+                    </div>
+                </div>
+                
+            </div>
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

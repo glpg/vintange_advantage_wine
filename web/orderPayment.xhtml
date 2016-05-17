@@ -1,0 +1,106 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                
+                
+                <h:link value="reivew order" outcome="reviewOrder" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="payment" style="font-size: 1.2em; color: black; "/>
+                
+                <h:panelGrid columns="3" columnClasses="addrCells" 
+                             style="width:900px; margin-left:30px; margin-top: 30px">
+                    
+                    
+                    
+                            
+                    
+                    
+                    <c:forEach items="#{shopCartBean.order.customerId.creditcardCollection}" var = "card">
+                        
+                        
+                        
+                        <h:panelGroup>
+                                <h:outputLabel value="(default payment)" rendered="#{card.id eq shopCartBean.order.customerId.ccIdDft.id}"/>
+                                <h:panelGrid columns="2" id="cc_dlft" width="250" style="margin-left: 10px; margin-top:5px">
+                                  
+                                <h:graphicImage value="resources/image/visa.png" width="50" 
+                                                rendered="#{logonBean.paymentType(card)==4}"/>
+                                <h:graphicImage value="resources/image/master.png" width="40" rendered="#{logonBean.paymentType(card)==5}"/>
+                                <h:graphicImage value="resources/image/discover.png" width="40" rendered="#{logonBean.paymentType(card)==6}" />
+                                <h:graphicImage value="resources/image/amex.png" width="40" rendered="#{logonBean.paymentType(card)==3}"/>
+                                
+                                <h:panelGroup>
+                                    <h:outputText value="#{logonBean.showCard(card)}" style="font-weight: bold; font-size: 1.1em"/>
+                                    <br></br>
+                                    <h:outputText value="expiration: #{card.cardExpirDate}" style="font-size: 0.9em; color: grey"/>
+                                </h:panelGroup>
+                                    
+                                
+                                
+                                
+                                </h:panelGrid>
+                                <h:panelGrid columns="1" styleClass="addrblock" style="margin-top: 10px; margin-left: 5px">
+                                
+                                    <h:outputLabel value="billing address"/>
+                                    <h:outputText value="#{card.addressId.fname} #{card.addressId.lname}"
+                                                   style="font-size: small"/>
+                           
+                                    <h:outputText value="#{card.addressId.line1}" style="font-size: small"/>
+       
+                                    <h:outputText value="#{card.addressId.line2}" style="font-size: small"
+                                                    rendered="#{not empty card.addressId.line2}" />
+                                    <h:outputText value="#{card.addressId.city},
+                                                    #{card.addressId.state} #{card.addressId.zipcode}"
+                                                    style="font-size: small"/>
+                                            
+                                </h:panelGrid>
+                            
+                            
+                            
+                            <h:form>
+                                
+                                
+                                <h:commandLink value="remove " action="#{creditcardBean.removeCheckOut(card)}"
+                                    style="font-size: 0.9em; color: blue; font-weight: bold; margin-right:5px"/>
+                                <h:outputText value="|" rendered="#{not(card.id eq logonBean.current.customer.ccIdDft.id)}"
+                                              style="font-size: 1.0em; color: black;margin-right:5px "/>
+                                <h:commandLink value="make default"  rendered="#{not(card.id eq logonBean.current.customer.ccIdDft.id)}"
+                                               action="#{creditcardBean.makeDefaultCheckOut(card)}"
+                                               
+                                    style="font-size: 0.9em; color: blue; font-weight: bold; margin-right:5px"/>
+                                
+                                <br></br>
+                                <h:commandButton value="Use this card" action="#{shopCartBean.changePayment(card)}"
+                                                 style="float: left; margin-top: 20px; padding: 3px"
+                                                 rendered="#{not(card.id eq shopCartBean.order.ccId.id)}"/>
+                                <h:commandButton value="Continue with this card" action="reviewOrder"
+                                                 style="float: left; margin-top: 20px; padding: 3px"
+                                                 rendered="#{card.id eq shopCartBean.order.ccId.id}"/>
+                            </h:form>
+                        
+                        </h:panelGroup>
+                       
+                        
+                    </c:forEach>
+                    
+                    <h:link value="add new card" outcome="orderNewCard" style="font-size: medium; color: blue; font-weight:bold"/>
+                </h:panelGrid>
+                      
+          
+                    
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
+

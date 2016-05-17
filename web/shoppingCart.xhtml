@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            
+            <ui:define name="center">
+                <div style="width:80%; padding-left: 30px; padding-top: 20px">
+                
+                <div style="font-size: 1.5em; color: black; font-weight: bold; margin-bottom: 20px">
+                        Your Shopping Cart
+                </div>
+                    
+                   <h:form rendered ="#{not empty shopCartBean.cart}">
+                        <h:dataTable id="cartlist" value="#{shopCartBean.cart}" var="wineitem">
+                        
+                            <h:column headerClass="col1">
+                                <f:facet name="header">Item</f:facet>
+                                <h:outputText value="#{wineitem.wineId.name}" 
+                                            style="text-align:left; color:#990012; font-weight: bold" />  
+                    
+                            </h:column>
+                            
+                            
+                            <h:column headerClass="col2">                       
+                                <f:facet name="header">Quantity</f:facet>
+                                <div style="text-align: center">
+                                <h:inputText value="#{wineitem.quantity}" size="1" style="text-align: center"/>
+                                </div>
+                                
+                            </h:column>
+    			
+                            <h:column headerClass="col3">
+                       
+                                <f:facet name="header">Price</f:facet>
+                                <div style="text-align: center">
+                                    <h:outputText value="$ #{wineitem.price}" 
+                                            style="font-weight: bold; color:#990012" /> 
+                            
+                                </div>
+                            </h:column>
+                            <h:column headerClass ="col4">
+                                
+                            <h:commandLink value="remove" action="#{shopCartBean.remove(wineitem)}" 
+                                           style="text-decoration: underline; color: blue; font-size: small; font-weight: bold"/>
+                            
+                            </h:column>
+                          
+                        </h:dataTable>
+                
+                    
+                        <h:commandButton value="update" action="#{shopCartBean.update()}" style="float: left; margin-top: 20px;" />
+                        
+                        <div style="float: right; margin-right: 180px; margin-top: 100px">
+                            <h:panelGrid columns="2">
+                                <h:outputText value="Total Price: " style="font-size: large; font-weight: bold;" />
+                                <h:outputLabel value="$ #{shopCartBean.total}" style="font-size: large; font-weight: bold; float: right" />
+                                <h:outputLabel/>
+                                <h:commandButton value="check out" action ="#{shopCartBean.checkout}" style="float: right"/>
+                            </h:panelGrid>
+                         
+                        </div>
+                    </h:form>
+                     
+                </div>
+                
+                
+            </ui:define>
+                
+        </ui:composition>
+    </h:body>
+</html>
+
+

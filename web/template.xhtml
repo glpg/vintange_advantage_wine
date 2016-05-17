@@ -1,0 +1,136 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>Index</title>
+        <h:outputStylesheet library="css" name="style.css"/>
+        <h:outputScript library="js" name="script.js" />
+    </h:head>
+    
+    <h:body onload="setCenterHeight()">
+        <div class="wrapper">
+            <div class="headerwrapper">
+                <header>
+                    <div class="inlineblock" style="float:left">
+                        <h:link outcome="/index">
+                            <h:graphicImage library="image" name="logo.jpg"  width="100" height="100"/>                           
+                        </h:link>
+                        
+                    </div>
+ 
+                    <div  style="display: inline;font-size: 2em; font-weight: bold" >
+                        Vintage Advantage Wine
+                        
+                    </div>
+                    <div class="inlineblock" style="float:right" >
+                        <form id="header-search">
+                            <input type="text" class="searchbox"  placeholder="Search" />
+                            <h:graphicImage library="image" name="search.png"/>
+                            
+                            
+                        </form>
+                    </div>
+                    
+           
+                </header>
+         
+                <div style="width: 88%; float: right; margin-top: 10px; margin-bottom: 10px;">
+                    <h:form id="mainmenu">
+                        <p:menubar style="padding-top: 8px; padding-bottom: 8px; padding-left: 25px; padding-right: 25px;">
+                            <p:menuitem styleClass="m-menu" value="Sign-in" action="signin" rendered="#{!logonBean.flag}"/>
+                            
+                            <p:submenu  styleClass="m-menu" label="hi, #{logonBean.current.customer.firstName}" rendered="#{logonBean.flag}" >
+                                
+                                <p:menuitem styleClass="sub-menu" value="Manage my account" action="/users/accountManage"></p:menuitem>
+                                <p:menuitem styleClass="sub-menu" value="Order history" action="/users/orderHistory"></p:menuitem>
+                                <p:separator/>
+                                <p:menuitem styleClass="sub-menu" value="Sign out" action="#{logonBean.signout}"></p:menuitem>
+                            </p:submenu>
+                            <p:menuitem styleClass="m-menu" value="Home" action="index"/>
+                            <p:menuitem styleClass="m-menu" value="About Us" />
+                            
+                            
+                            <p:submenu  styleClass="m-menu" label="Shop" >
+                                <p:submenu  styleClass="sub-menu" label="Red Wine" style="font-size: 0.90em;">
+                                    <p:menuitem styleClass="sub-menu" value="Cabernet Sauvignon"></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Bordeaux Blends " ></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Pinot Noir"></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Syrah/Shriaz"></p:menuitem>
+                                </p:submenu>
+                                <p:submenu  styleClass="sub-menu" label="White Wine" style="font-size: 0.90em;" >
+                                    <p:menuitem styleClass="sub-menu" value="Chardonnay"></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Sauvignon Blanc"></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Pinot Gris/Grigio"></p:menuitem>
+                                    <p:menuitem styleClass="sub-menu" value="Albarino"></p:menuitem>
+                                </p:submenu>
+                       
+                                <p:menuitem styleClass="sub-menu" value="Champagne"></p:menuitem>
+                                <p:menuitem styleClass="sub-menu" value="Sake"></p:menuitem>
+                                
+                            </p:submenu>
+                            
+                            
+                            <p:submenu styleClass="m-menu" label="The Wine-eer">
+                                <p:menuitem styleClass="sub-menu" value="The Blog"></p:menuitem>
+                                <p:menuitem styleClass="sub-menu" value="Daily Wine Picks"></p:menuitem>
+                                <p:menuitem styleClass="sub-menu" value="Top 10 Wines of The Year"></p:menuitem>
+                                <p:menuitem styleClass="sub-menu" value="The Full Wine Experiences - Guide"></p:menuitem>
+                            </p:submenu>
+                            
+                            <p:menuitem styleClass="m-menu" value="Cart" rendered="#{shopCartBean.count == 0}"  url="faces/shoppingCart.xhtml"/>
+                            <p:menuitem styleClass="m-menu" value="Cart (#{shopCartBean.count})" rendered="#{shopCartBean.count > 0}"    url="faces/shoppingCart.xhtml"/>
+                            
+                        </p:menubar>
+                    </h:form>
+                </div>
+            </div>
+            
+            <div id="center" class="center">
+                <ui:insert name="center"></ui:insert>
+            </div>
+            
+        
+            <div class="footer">
+                <hr></hr>
+               
+                <ul class="footermenu">
+                    <li><a href="acct.html">About us</a></li>
+                    <li><a href="acct.html">Terms and Conditions</a></li>
+                    <li><a href="acct.html">Customer Service</a></li>
+                    <li><a href="acct.html">FAQ</a></li>
+                    <li>
+                        <p>Copyright@2015 by Vintage Advantage Inc. All rights reserved.</p>
+                    </li>
+                </ul>
+                
+                <ul class="social">
+                    <li><span style="font-weight: bold;">Connect with us</span></li>
+                    <li><a href="#">
+                            <h:graphicImage library="image" name="facebook.png"  width="29" height="28"/>
+                        </a>
+                    </li>
+                    <li><a href="#">
+                            <h:graphicImage library="image" name="twitter.png"  width="27" height="27"/>
+                          
+                        </a>
+                    </li>
+                    <li><a href="#">
+                            <h:graphicImage library="image" name="google.png"  width="26" height="26"/>
+                           
+                        </a>
+                    </li>
+                    <li><a href="#">
+                            <h:graphicImage library="image" name="pinterest.png"  width="28" height="28"/>
+                        </a>
+                    </li>
+                
+                </ul>
+               
+                
+            </div>    
+        </div>
+    </h:body>
+</html>

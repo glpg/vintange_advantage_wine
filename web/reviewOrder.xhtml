@@ -1,0 +1,132 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                <div style="font-size: 1.5em; color: black; font-weight: bold; margin-bottom: 20px">
+                        Review Your Order
+                </div>
+                
+                <h:panelGrid columns="2" style="width:80%; margin-left: 30px; margin-top: 20px; " 
+                             columnClasses="eighty-percent top-alignment, twenty-percent top-alignment">
+                    
+                        <h:panelGroup>
+                            <h:form>
+                                <div style="display: inline-block; width: 250px">
+                                <h:outputLabel value="Shipping Address" style="font-size: 1.2em; padding-right: 10px"/>
+                                <h:link value="edit"  outcome="orderAddr"
+                                        style="text-decoration: underline; color: blue; font-size: 0.85em"/>
+                                
+                                <ui:fragment rendered="#{! empty shopCartBean.order.addressId}">
+                                    <h:panelGrid columns="1"  width="250" style="margin-left: 10px; margin-top: 20px">
+                                    
+                                    <h:outputText value="#{shopCartBean.order.addressId.fname} #{logonBean.current.customer.addressIdDft.lname}"/>
+                           
+                                    <h:outputText value="#{shopCartBean.order.addressId.line1}" />
+       
+                                    <h:outputText value="#{shopCartBean.order.addressId.line2}" 
+                                                    rendered="#{! empty shopCartBean.order.addressId.line2} " />
+                                    <h:outputText value="#{shopCartBean.order.addressId.city},
+                                                    #{shopCartBean.order.addressId.state} #{shopCartBean.order.addressId.zipcode}"/>
+                                    
+                                    </h:panelGrid>
+                       
+                            </ui:fragment>
+                                
+                        </div>
+                            
+                                <div style="display: inline-block; width: 250px">
+                            <h:outputLabel value="Payment" style="font-size: 1.2em; padding-right: 10px"/>
+                            <h:link value="edit"  outcome="orderPayment"
+                                        style="text-decoration: underline; color: blue; font-size: 0.85em"/>
+                            <ui:fragment rendered="#{! empty shopCartBean.order.ccId}">
+                                <h:panelGrid columns="2" id="cc_dlft" width="250" style="margin-left: 10px; margin-top: 20px">
+                                
+                                <h:graphicImage value="resources/image/visa.png" width="50" 
+                                                rendered="#{logonBean.paymentType(shopCartBean.order.ccId)==4}"/>
+                                <h:graphicImage value="resources/image/master.png" width="40" rendered="#{logonBean.paymentType(shopCartBean.order.ccId)==5}"/>
+                                <h:graphicImage value="resources/image/discover.png" width="40" rendered="#{logonBean.paymentType(shopCartBean.order.ccId)==6}" />
+                                <h:graphicImage value="resources/image/amex.png" width="40" rendered="#{logonBean.paymentType(shopCartBean.order.ccId)==3}"/>
+                                
+                                <h:panelGroup>
+                                    <h:outputText value="#{logonBean.showCard(shopCartBean.order.ccId)}" style="font-weight: bold; font-size: 1.1em"/>
+                                    <br></br>
+                                    <h:outputText value="expiration: #{shopCartBean.order.ccId.cardExpirDate}" style="font-size: 0.9em; color: grey"/>
+                                </h:panelGroup>
+                                    
+                                
+                                
+                                
+                                </h:panelGrid>
+                                <h:panelGrid columns="1" styleClass="addrblock" style="margin-top: 10px; margin-left: 5px">
+                                
+                                    <h:outputLabel value="billing address"/>
+                                    <h:outputText value="#{shopCartBean.order.ccId.addressId.fname} #{shopCartBean.order.ccId.addressId.lname}"
+                                                   style="font-size: small"/>
+                           
+                                    <h:outputText value="#{shopCartBean.order.ccId.addressId.line1}" style="font-size: small"/>
+       
+                                    <h:outputText value="#{shopCartBean.order.ccId.addressId.line2}" style="font-size: small"
+                                                    rendered="#{not empty shopCartBean.order.ccId.addressId.line2}" />
+                                    <h:outputText value="#{shopCartBean.order.ccId.addressId.city},
+                                                    #{shopCartBean.order.ccId.addressId.state} #{shopCartBean.order.ccId.addressId.zipcode}"
+                                                    style="font-size: small"/>
+                                            
+                                </h:panelGrid>
+                            
+                            </ui:fragment>
+                            
+                        </div>
+                            
+
+                            </h:form>
+                           
+                        </h:panelGroup>
+                    
+                    
+                    <h:panelGroup>
+                        <div style="background-color: #e6e6e6; width: 180px; padding: 15px; line-height: 30px">
+                            <h:outputLabel value="Order Summary" styleClass="blackboldmedium"/>
+                            <hr></hr>
+                            
+                                <h:outputLabel value="subtotal:" styleClass="blackboldmedium"/>
+                                <h:outputText value="$ #{shopCartBean.total}" styleClass="blackboldmediumright"/>
+                                <br></br>
+                                <h:outputLabel value="shipping:" styleClass="blackboldmedium"/>
+                                <h:outputText value="FREE" rendered="#{shopCartBean.total ge 149}" styleClass="blackboldmedium" style="color:red; float: right"/>
+                                <h:outputText value="$ 9.99" rendered="#{not (shopCartBean.total ge 149)}" styleClass="blackboldmediumright"/>
+                                <br></br>
+                                <hr></hr>
+                                <h:outputLabel value ="total:" styleClass="blackboldmedium"/>
+                                <h:outputText value="$ #{shopCartBean.total + 9.99}" rendered="#{not (shopCartBean.total ge 149)}" 
+                                              styleClass="blackboldmediumright" style="font-size: 1.2em; color:#990012"/>
+                                <h:outputText value="$ #{shopCartBean.total}" rendered="#{shopCartBean.total ge 149}"
+                                              styleClass="blackboldmediumright" style="font-size: 1.2em; color:#990012"/>
+                                
+                           
+                            
+                            
+                        </div>
+                        
+                        <h:form>
+                            <h:commandButton styleClass="submitOrder" value="Submit Order" action="#{shopCartBean.submitOrder()}"
+                                                disabled="#{(empty shopCartBean.order.ccId) or (empty shopCartBean.order.addressId)}" style="margin-top: 20px; float: left"/>
+                            <link href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+                        </h:form>
+                        
+                        
+                        
+                    </h:panelGroup>
+                    
+                    
+                </h:panelGrid>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>

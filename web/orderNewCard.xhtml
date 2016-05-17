@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"  
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    
+    <h:body>
+        <ui:composition template="./template.xhtml">
+            <ui:define name="center">
+                
+                <h:link value="reivew order" outcome="reviewOrder" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:link value="payment" outcome="orderPayment" style="font-size: 1.2em; font-weight: bold; color: blue; margin-right:5px"/>
+                <h:outputText value=">" style="font-size: 1.2em; color: black;margin-right:5px "/>
+                <h:outputText value="new card" style="font-size: 1.2em; color: black; "/>
+                
+                <h:form>
+                    <h:panelGrid columns="2">
+                 
+                        
+                        <h:outputLabel value="credit card number" />
+                        <h:outputLabel/>
+                        <h:inputText size="20" value="#{newCardBean.ccnum}" id="ccnum" required="true" requiredMessage="You must enter credit card number" />
+                        <h:message for="ccnum" class="alertmsg"/>
+                        
+                        <h:outputLabel value="expiration date" />
+                        <h:outputLabel/>
+                        <h:panelGroup>
+                            <p:selectOneMenu value="#{newCardBean.month}" style="margin-right: 10px; width: 120px">
+                                    
+                                    <f:selectItem itemValue="1" itemLabel="01-Jan" />
+                                    <f:selectItem itemValue="2" itemLabel="02-Feb"/>
+                                    <f:selectItem itemValue="3" itemLabel="03-Mar"/>
+                                    <f:selectItem itemValue="4" itemLabel="04-Apr"/>
+                                    <f:selectItem itemValue="5" itemLabel="05-May"/>
+                                    <f:selectItem itemValue="6" itemLabel="06-Jun" />
+                                    <f:selectItem itemValue="7" itemLabel="07-Jul"/>
+                                    <f:selectItem itemValue="8" itemLabel="08-Aug"/>
+                                    <f:selectItem itemValue="9" itemLabel="09-Sep"/>
+                                    <f:selectItem itemValue="10" itemLabel="10-Oct"/>
+                                    <f:selectItem itemValue="11" itemLabel="11-Nov" />
+                                    <f:selectItem itemValue="12" itemLabel="12-Dec"/>
+                    
+                            </p:selectOneMenu>
+                            <p:selectOneMenu value="#{newCardBean.year}" style="width: 80px">
+                                    
+                                    <f:selectItem itemValue="2015" itemLabel="2015" />
+                                    <f:selectItem itemValue="2016" itemLabel="2016"/>
+                                    <f:selectItem itemValue="2017" itemLabel="2017"/>
+                                    <f:selectItem itemValue="2018" itemLabel="2018"/>
+                                    <f:selectItem itemValue="2019" itemLabel="2019"/>
+                                    <f:selectItem itemValue="2020" itemLabel="2020"/>
+                                    
+                            </p:selectOneMenu>
+                            
+                        </h:panelGroup>
+                        <h:outputLabel/>
+                        
+                        <h:outputLabel value="billing address" />
+                        <h:outputLabel/>
+                        
+                        <h:outputLabel value="select from saved addresses: " style="color: black" />
+                        <p:selectOneMenu value="#{newCardBean.addr}" converter="#{addressConverter}" style="width: 250px">
+                               
+                            <f:selectItems value="#{newCardBean.customer.addressCollection}" var="address"
+                                           itemValue="#{address}"
+                                           itemLabel="#{address.fname} #{address.lname},#{address.line1}"/>
+                               
+                        </p:selectOneMenu>
+                        
+                        <h:link value="add new address " outcome="newAddress" 
+                                    style="color: blue; text-decoration: underline; font-weight: bold; font-size: 0.8em" />
+                        <h:outputLabel/>
+                        
+                        <h:commandButton value="Create" action="#{newCardBean.registerCheckOut()}" style="float: left; margin-top: 20px">
+                        </h:commandButton>
+                        
+                        
+                        
+                        
+                    </h:panelGrid>
+                </h:form>
+                
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+
